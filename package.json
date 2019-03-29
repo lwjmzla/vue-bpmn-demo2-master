@@ -2,7 +2,7 @@
   "name": "vue-bpmn-demo",
   "version": "1.0.0",
   "description": "vue-bpmn",
-  "author": "lia <418607528@qq.com>",
+  "author": "LWJ",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
