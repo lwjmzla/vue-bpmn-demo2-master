@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "bpmn-js": "^2.5.1",
-    "element-ui": "^2.4.11",
+    "bpmn-moddle": "^5.1.6",
+    "element-ui": "^2.7.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
