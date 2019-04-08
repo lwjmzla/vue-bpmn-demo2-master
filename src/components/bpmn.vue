@@ -23,6 +23,7 @@ import BpmnModdle from 'bpmn-moddle'
 import PaletteProvider from './PaletteProvider.js'
 import customTranslate from '@/bpmnChineseTranslate/index.js'
 import { Loading } from 'element-ui'
+import axios from 'axios'
 export default {
   created () {
     this.loadingInstance = Loading.service()
@@ -148,6 +149,23 @@ export default {
           this.moddle.toXML(definitions, {format: true}, (err, xml) => {
             console.log(err)
             this.xml = xml
+
+            var blob = new Blob([xml], {type: 'applicationmn20-xml;charset=UTF-8'})
+            var formData = new FormData()
+            formData.append('file', blob) // !formdata.append("avatar_img",$("#avatar")[0].files[0]); 文件也是这么传
+            formData.append('procId', 'a1')
+            console.log(blob)
+            console.log(formData) // !就算有数据打印出来也是空的
+            console.log(formData.get('file'))
+
+            axios({
+              method: 'post',
+              url: 'http://192.168.1.69:9088/api/workflow/releaseProcess',
+              data: formData // !固定写法  不能 {file: formData,procId: 'a1'}  同时只能提交一种类型，你设置为json，就相当于是2种类型了
+              // headers: { 'Content-Type': 'multipart/form-data' } // 可以不设置
+            }).then((res) => {
+              console.log(res)
+            })
             // this.bpmn.importXML(xml, _=>{
             //   // 改变元素颜色
             //   // let modeling = this.bpmn.get('modeling');
